@@ -1,6 +1,6 @@
 //
 //  StatefulTableView.swift
-//  StatefulCollectionsDemo
+//  StatefulCollections
 //
 //  Created by Guillem Espejo on 20/02/2020.
 //  Copyright © 2020 Guillem Espejo. All rights reserved.
@@ -8,29 +8,6 @@
 
 import UIKit
 
-public enum TableViewState : CaseIterable{ //CaseIterable allows the use of 'allCases'
-    case normal
-    case empty
-    case loading
-    case error
-}
-
-private class TableViewStateData{
-    var stateId : TableViewState
-    var image : UIImage?
-    var text : String?
-    var separatorStyle : UITableViewCell.SeparatorStyle
-    var showIndicator : Bool
-    
-    init(identifier:TableViewState, image:UIImage? , text:String?,separatorStyle : UITableViewCell.SeparatorStyle,showIndicator:Bool) {
-        self.stateId = identifier
-        self.image = image
-        self.text = text
-        self.separatorStyle = separatorStyle
-        self.showIndicator = showIndicator
-        
-    }
-}
 
 @IBDesignable public final class StatefulTableView: UITableView {
 
@@ -38,8 +15,8 @@ private class TableViewStateData{
     private var currentImage : UIImageView!
     private var textLabel : UILabel!
     private var activityIndicator : UIActivityIndicatorView!
-    private var stateList : [TableViewStateData] = []
-    private var currentState : TableViewStateData?
+    private var stateList : [CollectionStateData] = []
+    private var currentState : CollectionStateData?
     
     
     // ------------------------------------------------------------
@@ -101,7 +78,7 @@ private class TableViewStateData{
     // PUBLIC API METHODS
     // ------------------------------------------------------------
     // MARK: - Public API Methods
-    public func setState(to state:TableViewState){
+    public func setState(to state:CollectionState){
         let data = getStateData(for: state)
         self.currentImage?.image = data?.image
         self.textLabel?.text = data?.text
@@ -115,25 +92,25 @@ private class TableViewStateData{
 
     }
     
-    public func setImage(to image:UIImage?, forState state:TableViewState){
+    public func setImage(to image:UIImage?, forState state:CollectionState){
         let data = getStateData(for: state)
         data?.image = image
         setStateIfNeeded()
     }
     
-    public func setText(to text:String?, forState state:TableViewState){
+    public func setText(to text:String?, forState state:CollectionState){
         let data = getStateData(for: state)
         data?.text = text
         setStateIfNeeded()
     }
     
-    public func setSeparator(to separator:UITableViewCell.SeparatorStyle, forState state:TableViewState){
+    public func setSeparator(to separator:UITableViewCell.SeparatorStyle, forState state:CollectionState){
         let data = getStateData(for: state)
         data?.separatorStyle = separator
         setStateIfNeeded()
     }
 
-    public func reset(state:TableViewState){
+    public func reset(state:CollectionState){
         let index = self.stateList.firstIndex { (statedata) -> Bool in
             return statedata.stateId == state
         }
@@ -143,7 +120,7 @@ private class TableViewStateData{
             return
         }
         
-        let restoredState = createStateData(forIdentifier: state)
+        let restoredState = CollectionStateData.create(forIdentifier: state)
         self.stateList[finalIndex] = restoredState
         
         setStateIfNeeded()
@@ -160,44 +137,9 @@ private class TableViewStateData{
     // PRIVATE METHODS
     // ------------------------------------------------------------
     // MARK: - Private methods
-    private func createStateData(forIdentifier identifier:TableViewState) -> TableViewStateData{
-        var stateData : TableViewStateData
-
-        switch identifier {
-            case .normal:
-                stateData = TableViewStateData(identifier: .normal,
-                                      image: nil,
-                                      text: nil,
-                                      separatorStyle:.singleLine,
-                                      showIndicator: false)
-            
-            case .loading:
-                stateData = TableViewStateData(identifier: .loading,
-                                      image: nil,
-                                      text: "Loading...",
-                                      separatorStyle:.none,
-                                      showIndicator: true)
-            
-            case .empty:
-                stateData = TableViewStateData(identifier: .empty,
-                                      image: UIImage(systemName: "text.badge.xmark"),
-                                      text: "No results",
-                                      separatorStyle:.none,
-                                      showIndicator: false)
-            
-            case .error:
-                stateData = TableViewStateData(identifier: .error,
-                                      image: UIImage(systemName: "xmark.octagon"),
-                                      text: "There was an unknown error",
-                                      separatorStyle:.none,
-                                      showIndicator: false)
-
-        }
-        
-        return stateData
-    }
     
-    private func getStateData(for state:TableViewState) -> TableViewStateData? {
+    
+    private func getStateData(for state:CollectionState) -> CollectionStateData? {
         let stateData = self.stateList.first { (statedata) -> Bool in
             return statedata.stateId == state
         }
@@ -211,8 +153,8 @@ private class TableViewStateData{
     }
     
     private func fillStateData(){
-        for state in TableViewState.allCases {
-            let data = createStateData(forIdentifier: state)
+        for state in CollectionState.allCases {
+            let data = CollectionStateData.create(forIdentifier: state)
             stateList.append(data)
         }
     }
