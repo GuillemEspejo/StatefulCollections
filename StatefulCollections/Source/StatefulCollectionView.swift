@@ -6,6 +6,7 @@
 //  Copyright © 2020 Guillem Espejo. All rights reserved.
 //
 
+/*
 import UIKit
 
 @IBDesignable public final class StatefulCollectionView: UICollectionView {
@@ -24,7 +25,7 @@ import UIKit
     // MARK: - Init-Deinit
     override public func awakeFromNib(){
         super.awakeFromNib()
-        
+
         // Image View
         self.currentImage = UIImageView()
         self.currentImage?.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
@@ -62,7 +63,6 @@ import UIKit
         // When all the views are ready, we initialize state data
         fillStateData()
         setState(to: .normal)
-        
     }
     
     override public func reloadData() {
@@ -165,5 +165,6 @@ import UIKit
         return rows
     }
 }
+*/
 
 

@@ -44,6 +44,7 @@ Set your collection style view classes to its matching subclass, StatefulTableVi
 
 ```swift
 import StatefulCollections
+// Other imports ...
 
 class ViewController: UIViewController {
 
@@ -92,7 +93,7 @@ will give your tableview the following appearance:
 However, you can set the image and the text to another values:
 ```swift
 let errorImage = UIImage(systemName: "clear")
-tableview.setImage(to: errorImage forState: .error)
+tableview.setImage(to: errorImage, forState: .error)
 tableview.setText(to: "Network error", forState: .error)
 
 // ...
@@ -121,7 +122,7 @@ tableview.setText(to: "There were no results for your query", forState: .empty)
 tableview.reset(state: .error) // Only error state will be reset
 
 // ...
-tableview.resetAllStates // Every state will be reset to default values
+tableview.resetAllStates() // Every state will be reset to default values
 
 ```
 

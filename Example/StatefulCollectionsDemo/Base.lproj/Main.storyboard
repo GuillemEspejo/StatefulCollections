@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zvJ-5P-A6b">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--UICollectionView-->
+        <scene sceneID="JbQ-vg-SR0">
+            <objects>
+                <viewController id="fpj-4h-S9V" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KN9-XK-M4R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5oa-66-TJ9"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="UICollectionView" id="PQk-xm-MLZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yfN-9D-aN4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="159"/>
+        </scene>
+        <!--UITableview-->
+        <scene sceneID="muk-8H-YLo">
+            <objects>
+                <viewController id="zih-as-7Ra" customClass="TableExampleViewController" customModule="StatefulCollectionsDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jBA-0Y-MDM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PQ3-6a-LGb" customClass="StatefulTableView" customModule="StatefulCollections">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="NMr-Q0-E8r" detailTextLabel="Mks-Qa-TxP" imageView="2R0-HH-MeF" style="IBUITableViewCellStyleSubtitle" id="Ljn-4P-RSE">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ljn-4P-RSE" id="bTN-EQ-R0J">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NMr-Q0-E8r">
+                                                    <rect key="frame" x="59" y="9" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mks-Qa-TxP">
+                                                    <rect key="frame" x="59" y="31.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="book" catalog="system" id="2R0-HH-MeF">
+                                                    <rect key="frame" x="21.25" y="19.5" width="21.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zih-as-7Ra" id="TwP-7i-SkY"/>
+                                    <outlet property="delegate" destination="zih-as-7Ra" id="WsV-j9-dXw"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zo-sH-C6Z">
+                                <rect key="frame" x="0.0" y="769" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <items>
+                                    <barButtonItem title="Empty" id="vbL-8v-21Y">
+                                        <connections>
+                                            <action selector="emptyTapped:" destination="zih-as-7Ra" id="Z4q-84-f6d"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Default" id="D7N-Wk-2gc">
+                                        <connections>
+                                            <action selector="defaultTappedWithSender:" destination="zih-as-7Ra" id="Q7p-kR-FuB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Error" id="z0r-aj-wCr">
+                                        <connections>
+                                            <action selector="errorTapped:" destination="zih-as-7Ra" id="Ve5-wZ-YNq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Custom 1" id="bKt-mo-kf6">
+                                        <connections>
+                                            <action selector="custom1Tapped:" destination="zih-as-7Ra" id="e97-DV-vzY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Custom 2" id="3Qj-g8-mcW">
+                                        <connections>
+                                            <action selector="custom2Tapped:" destination="zih-as-7Ra" id="2Xr-O0-cbO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="n7n-VB-dau"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="UITableview" id="yQs-eA-0u3"/>
+                    <connections>
+                        <outlet property="btnCustom" destination="bKt-mo-kf6" id="XmV-ye-hKf"/>
+                        <outlet property="btnCustom2" destination="3Qj-g8-mcW" id="hhh-Op-OMc"/>
+                        <outlet property="btnDefault" destination="D7N-Wk-2gc" id="YjO-7o-zlq"/>
+                        <outlet property="btnEmpty" destination="vbL-8v-21Y" id="Xfv-gK-LoQ"/>
+                        <outlet property="btnError" destination="z0r-aj-wCr" id="Fqc-Bo-bQO"/>
+                        <outlet property="tableview" destination="PQ3-6a-LGb" id="xS6-Mf-oeL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VzH-4M-Jkj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039.1304347826087" y="-490.17857142857139"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="VV6-dd-OgX">
+            <objects>
+                <tabBarController id="zvJ-5P-A6b" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZeP-Jk-D7o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zih-as-7Ra" kind="relationship" relationship="viewControllers" id="Fc0-ZJ-dXK"/>
+                        <segue destination="fpj-4h-S9V" kind="relationship" relationship="viewControllers" id="Ywc-ko-pRd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s2D-pH-yCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123" y="-165"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
+    </resources>
+</document>
