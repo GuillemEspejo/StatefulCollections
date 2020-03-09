@@ -44,6 +44,8 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func defaultTapped(sender _:Any){
         // Default states
         self.tableview.resetAllStates()
+        self.tableview.resetTextColor()
+        self.tableview.resetImageTint()
         
         // Set desired fake results
         showData = true
@@ -53,6 +55,8 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func emptyTapped(_ sender: Any) {
         // Default states
         self.tableview.resetAllStates()
+        self.tableview.resetTextColor()
+        self.tableview.resetImageTint()
         
         // Set desired fake results
         showData = false
@@ -62,6 +66,8 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func errorTapped(_ sender: Any) {
         // Default states
         self.tableview.resetAllStates()
+        self.tableview.resetTextColor()
+        self.tableview.resetImageTint()
         
         // Set desired fake results
         showData = nil
@@ -76,7 +82,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
         let image = UIImage(systemName: "trash")
         self.tableview.setImage(to: image, forState: .empty)
         self.tableview.setImageTint(to: .red)
-        self.tableview.setTextColor(to: .yellow)
+        self.tableview.setTextColor(to: .blue)
        
         // Set desired fake results
         showData = false

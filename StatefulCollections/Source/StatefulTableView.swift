@@ -43,8 +43,7 @@ import UIKit
         self.currentImage?.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
         self.currentImage?.widthAnchor.constraint(equalToConstant: 150.0).isActive = true
         self.currentImage?.contentMode = .scaleAspectFill
-        self.imageTint = self.currentImage.tintColor
-        self.textColor = self.textLabel.textColor
+
         
         // Text Label
         self.textLabel = UILabel()
@@ -68,7 +67,10 @@ import UIKit
         stackView.addArrangedSubview(self.textLabel!)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        // Misc
         self.backgroundView = stackView
+        self.imageTint = self.currentImage.tintColor
+        self.textColor = self.textLabel.textColor
 
         // Constraints
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -72,9 +72,9 @@ Both views support four different states:
 
 | State            | View            |  Image             |  Text             | Use             |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| .normal         | Standard view appearance, uses normal separator style as default. | N/A | N/A | Used as default state, when there is content to show. |
+| .normal         | Standard view appearance. | N/A | N/A | Used as default state, when there is content to show. |
 | .loading        | Removes cell separator, shows activity indicator and the default text. | N/A | 'Loading...' | Used when loading or processing data (Core Data, networking, file parsing, etc). |
-| .emtpy            | Removes cell separator, shows SF Image and the default text. | 'text.badge.xmark' | 'No results' |Used when there are no results to show.      |
+| .emtpy            | Removes cell separator, shows SF Image and the default text. | 'text.badge.xmark' | 'No results' | Used when there are no results to show. |
 | .error            | Removes cell separator, shows SF Image and the default text. | 'xmark.octagon' | 'There was an unknown error' | Used when the process of obtaining data for the collection has failed (I/O errors, networking,etc). |
 
 ## Customization
@@ -103,11 +103,17 @@ tableview.setState(to: .error)
 ```
 ![](docs/tableviewerrorcustom.png)
 
-## Reloading data
 
-When reloading data it will automatically reset its state to `.normal` if the view's datasource number of available rows in any section is bigger than 0. If not, it will keep the last set state, so it's up to you to change it if needed.
+Besides setting custom images and text, you can also set custom tints and colors. The colors are applied to the views itself and are not dependant on the state. 
 
-## Reset states
+```swift
+tableview.setImageTint(to: .red)
+tableview.setTextColor(to: .yellow)
+
+```
+![](docs/tableviewcolorcustom.png)
+
+## Reset states and colors
 
 If you want to reset any state appearance to its original settings, just use `resetState` or `resetAllStates`:  
 
@@ -123,6 +129,21 @@ tableview.reset(state: .error) // Only error state will be reset
 
 // ...
 tableview.resetAllStates() // Every state will be reset to default values
+
+```
+
+Due to the colors being independent of the state, when you need custom colors for a single one, you must set them every time you set that state, and reset them when another one is shown.
+
+```swift
+tableview.setImageTint(to: .red)
+tableview.setTextColor(to: .yellow)
+tableview.setState(to: .error)
+
+// ...
+
+tableview.resetTextColor()
+tableview.resetImageTint()
+tableview.setState(to: .empty)
 
 ```
 
