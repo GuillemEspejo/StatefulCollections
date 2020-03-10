@@ -59,6 +59,7 @@ class ViewController: UIViewController {
 Set the class and the import module in storyboard if needed.
 
 ![](docs/storyboard.png | width=200)
+<img src="docs/storyboard.png" width="200">
 
 When you want to set the state of the view, set it using `setStateTo`: 
 ```swift
