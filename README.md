@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 
 Set the class and the import module in storyboard if needed.
 
-<img src="docs/storyboard.png" width="400">
+<img src="docs/storyboard.png" width="425">
 
 When you want to set the state of the view, set it using `setStateTo`: 
 ```swift
@@ -89,7 +89,7 @@ tableview.setState(to: .error)
 ```
 will give your tableview the following appearance:
 
-<img src="docs/tableviewerror.png" width="350">
+<img src="docs/tableviewerror.jpg" width="300">
 
 However, you can set the image and the text to another values:
 ```swift
@@ -103,7 +103,7 @@ tableview.setState(to: .error)
 
 ```
 
-<img src="docs/tableviewerrorcustom.png" width="350">
+<img src="docs/tableviewerrorcustom.jpg" width="300">
 
 
 Besides setting custom images and text, you can also set custom tints and colors. The colors are applied to the views itself and are not dependant on the state. 
@@ -114,7 +114,7 @@ tableview.setTextColor(to: .yellow)
 
 ```
 
-<img src="docs/tableviewcolorcustom.png" width="350">
+<img src="docs/tableviewcolorcustom.jpg" width="300">
 
 
 ## Reset states and colors
