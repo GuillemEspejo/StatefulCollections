@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class StatefulTableDatasource : NSObject, UITableViewDataSource {
+// Basic empty datasource used when StatefulCollections are loading data
+class StatefulEmptyDatasource : NSObject, UITableViewDataSource , UICollectionViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -18,10 +19,6 @@ class StatefulTableDatasource : NSObject, UITableViewDataSource {
         return UITableViewCell()
     }
     
-}
-
-/*
-class StatefulCollectionDatasource : NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
@@ -29,6 +26,5 @@ class StatefulCollectionDatasource : NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
-
+    
 }
- */

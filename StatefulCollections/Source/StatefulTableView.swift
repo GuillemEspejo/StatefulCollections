@@ -36,14 +36,13 @@ import UIKit
         self.currentSeparator = self.separatorStyle
         
         self.originalDatasource = self.dataSource
-        self.emptyDatasource = StatefulTableDatasource()
+        self.emptyDatasource = StatefulEmptyDatasource()
         
         // Image View
         self.currentImage = UIImageView()
         self.currentImage?.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
         self.currentImage?.widthAnchor.constraint(equalToConstant: 150.0).isActive = true
         self.currentImage?.contentMode = .scaleAspectFill
-
         
         // Text Label
         self.textLabel = UILabel()
@@ -65,7 +64,6 @@ import UIKit
         stackView.addArrangedSubview(self.currentImage!)
         stackView.addArrangedSubview(self.activityIndicator!)
         stackView.addArrangedSubview(self.textLabel!)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Misc
         self.backgroundView = stackView
@@ -75,11 +73,11 @@ import UIKit
         // Constraints
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
         // When all the views are ready, we initialize state data
         fillStateData()
         setState(to: .normal)
-    
         
     }
     
@@ -233,15 +231,5 @@ import UIKit
             setState(to: currentId)
         }
     }
-/*
-    private func numberOfRowsInAllSections() -> Int {
-        let numberOfSections = self.dataSource?.numberOfSections?(in: self) ?? 1
-        var rows = 0
-        for i in 0 ..< numberOfSections {
-            rows += self.dataSource?.tableView(self, numberOfRowsInSection: i) ?? 0
-        }
-        return rows
-    }
-    */
 }
 

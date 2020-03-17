@@ -43,9 +43,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - IBActions
     @IBAction func defaultTapped(sender _:Any){
         // Default states
-        self.tableview.resetAllStates()
-        self.tableview.resetTextColor()
-        self.tableview.resetImageTint()
+        resetStates()
         
         // Set desired fake results
         showData = true
@@ -54,9 +52,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func emptyTapped(_ sender: Any) {
         // Default states
-        self.tableview.resetAllStates()
-        self.tableview.resetTextColor()
-        self.tableview.resetImageTint()
+        resetStates()
         
         // Set desired fake results
         showData = false
@@ -65,9 +61,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func errorTapped(_ sender: Any) {
         // Default states
-        self.tableview.resetAllStates()
-        self.tableview.resetTextColor()
-        self.tableview.resetImageTint()
+        resetStates()
         
         // Set desired fake results
         showData = nil
@@ -104,11 +98,10 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     // ------------------------------------------------------------
     // MARK: - Private
     private func simulateLoading(){
-        enableButtons(false)
-        
         self.tableview.setState(to: .loading)
         
         // Simulate processing time and show results
+        enableButtons(false)        
         let when = DispatchTime.now() + 3.0
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.enableButtons(true)
@@ -130,6 +123,12 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
         tableview.reloadData()
     }
     
+    private func resetStates(){
+        self.tableview.resetAllStates()
+        self.tableview.resetTextColor()
+        self.tableview.resetImageTint()
+    }
+    
     private func enableButtons(_ isEnabled:Bool){
         self.btnEmpty.isEnabled = isEnabled
         self.btnError.isEnabled = isEnabled
@@ -147,7 +146,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableCell")
         let bookData = bookList[indexPath.row]
         
         cell?.textLabel?.text = bookData.name

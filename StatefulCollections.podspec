@@ -11,5 +11,6 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "13.0"
   spec.source       = { :git => "https://github.com/GuillemEspejo/StatefulCollections.git", :tag => "#{spec.version}" }
   spec.source_files = "StatefulCollections/Source/*.{swift}"
+  spec.resource_bundle = "StatefulCollections/Resources/*.{xib}"
   spec.swift_version = "5.0"
 end

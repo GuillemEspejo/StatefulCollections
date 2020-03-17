@@ -110,7 +110,7 @@ Besides setting custom images and text, you can also set custom tints and colors
 
 ```swift
 tableview.setImageTint(to: .red)
-tableview.setTextColor(to: .yellow)
+tableview.setTextColor(to: .blue)
 
 ```
 

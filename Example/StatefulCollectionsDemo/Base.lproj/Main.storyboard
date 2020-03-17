@@ -4,24 +4,92 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--UICollectionView-->
         <scene sceneID="JbQ-vg-SR0">
             <objects>
-                <viewController id="fpj-4h-S9V" sceneMemberID="viewController">
+                <viewController id="fpj-4h-S9V" customClass="CollectionExampleViewController" customModule="StatefulCollectionsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KN9-XK-M4R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YID-wT-7af" customClass="StatefulCollectionView" customModule="StatefulCollections">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W00-fo-T2a">
+                                    <size key="itemSize" width="125" height="125"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BasicCollectionCell" id="vzu-qZ-zGJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ovt-Ns-yp7">
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="125" height="125"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="fpj-4h-S9V" id="jBM-s3-tRY"/>
+                                    <outlet property="delegate" destination="fpj-4h-S9V" id="rg1-Q0-F7p"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Is-GJ-P6f">
+                                <rect key="frame" x="0.0" y="764" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Empty" id="r4O-bx-UTx">
+                                        <connections>
+                                            <action selector="emptyTapped:" destination="fpj-4h-S9V" id="yT7-7L-LAy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Default" id="4G8-ty-nMR">
+                                        <connections>
+                                            <action selector="defaultTappedWithSender:" destination="fpj-4h-S9V" id="ImR-hD-rS0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Error" id="jzg-On-lfC">
+                                        <connections>
+                                            <action selector="errorTapped:" destination="fpj-4h-S9V" id="4ir-iU-0NV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Custom 1" id="A3x-fT-Xxl">
+                                        <connections>
+                                            <action selector="custom1Tapped:" destination="fpj-4h-S9V" id="Q06-ww-6WA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Custom 2" id="2Y0-tA-Z05">
+                                        <connections>
+                                            <action selector="custom2Tapped:" destination="fpj-4h-S9V" id="tLN-TQ-0XL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="5oa-66-TJ9"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="UICollectionView" id="PQk-xm-MLZ"/>
+                    <connections>
+                        <outlet property="btnCustom" destination="A3x-fT-Xxl" id="hLx-1Q-ckY"/>
+                        <outlet property="btnCustom2" destination="2Y0-tA-Z05" id="jsN-WK-YrA"/>
+                        <outlet property="btnDefault" destination="4G8-ty-nMR" id="PIh-Qg-XVU"/>
+                        <outlet property="btnEmpty" destination="r4O-bx-UTx" id="uLm-V2-AZY"/>
+                        <outlet property="btnError" destination="jzg-On-lfC" id="pVC-GW-8MY"/>
+                        <outlet property="collectionview" destination="YID-wT-7af" id="lHn-Y9-baL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfN-9D-aN4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="159"/>
+            <point key="canvasLocation" x="1039.1304347826087" y="158.70535714285714"/>
         </scene>
         <!--UITableview-->
         <scene sceneID="muk-8H-YLo">
@@ -33,10 +101,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PQ3-6a-LGb" customClass="StatefulTableView" customModule="StatefulCollections">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="NMr-Q0-E8r" detailTextLabel="Mks-Qa-TxP" imageView="2R0-HH-MeF" style="IBUITableViewCellStyleSubtitle" id="Ljn-4P-RSE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicTableCell" textLabel="NMr-Q0-E8r" detailTextLabel="Mks-Qa-TxP" imageView="2R0-HH-MeF" style="IBUITableViewCellStyleSubtitle" id="Ljn-4P-RSE">
                                         <rect key="frame" x="0.0" y="28" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ljn-4P-RSE" id="bTN-EQ-R0J">
@@ -71,8 +139,8 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zo-sH-C6Z">
-                                <rect key="frame" x="0.0" y="769" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <rect key="frame" x="0.0" y="764" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Empty" id="vbL-8v-21Y">
                                         <connections>

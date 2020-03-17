@@ -26,7 +26,7 @@ struct Seeds{
     }
     
     private static func fillBookList(){
-        for i in 0...4 {
+        for i in 0...15 {
             let name = "Book \(i)"
             let author = "Author of book \(i)"
             let book = Book(name: name, author: author)
