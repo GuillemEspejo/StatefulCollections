@@ -1,6 +1,8 @@
-# StatefulCollections
-> Simple stateful collection views for iOS in Swift.
+<p align="center">
+    <img src="docs/Stateful.png">
+</p>
 
+> Simple stateful collection views for iOS in Swift.
 
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
@@ -12,8 +14,6 @@
 StatefulCollections is a small and lightweight Swift framework that allows to create UITableviews and UICollectionViews that support empty, loading and error states as easy as possible.
 
 It can be partially customized to allow greater flexibility while keeping things simple. It has a nice balance between view customization and ease of use.
-
-![](docs/header.png)
 
 ## Features
 
