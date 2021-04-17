@@ -29,16 +29,7 @@ class TableExampleViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var btnCustom: UIBarButtonItem!
     @IBOutlet weak var btnCustom2: UIBarButtonItem!
     
-    // ------------------------------------------------------------
-    // LIFECYCLE
-    // ------------------------------------------------------------
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    // ------------------------------------------------------------
-    // IBACTIONS
+
     // ------------------------------------------------------------
     // MARK: - IBActions
     @IBAction func defaultTapped(sender _:Any){

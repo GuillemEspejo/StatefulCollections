@@ -1,15 +1,14 @@
 //
-//  StatefulTableView.swift
+//  StatefulCollectionView.swift
 //  StatefulCollections
 //
-//  Created by Guillem Espejo on 20/02/2020.
+//  Created by Guillem Espejo on 28/02/2020.
 //  Copyright © 2020 Guillem Espejo. All rights reserved.
 //
 
 import UIKit
 
-
-@IBDesignable public final class StatefulTableView: UITableView {
+@IBDesignable public final class StatefulCollectionView: UICollectionView {
 
     // MARK: - Attributes
     private var currentImage : UIImageView!
@@ -18,41 +17,35 @@ import UIKit
     private var stateList : [CollectionStateData] = []
     private var currentState : CollectionStateData?
     
-    private var emptyDatasource : UITableViewDataSource?
-    private var originalDatasource : UITableViewDataSource?
-    private var currentSeparator : UITableViewCell.SeparatorStyle!
+    private var emptyDatasource : UICollectionViewDataSource?
+    private var originalDatasource : UICollectionViewDataSource?
     
     private var imageTint : UIColor?
     private var textColor : UIColor?
     
-    
-    // ------------------------------------------------------------
-    // INIT-DEINIT
     // ------------------------------------------------------------
     // MARK: - Init-Deinit
     override public func awakeFromNib(){
         super.awakeFromNib()
         
-        self.currentSeparator = self.separatorStyle
-        
-        self.originalDatasource = self.dataSource
-        self.emptyDatasource = StatefulEmptyDatasource()
+        originalDatasource = dataSource
+        emptyDatasource = StatefulEmptyDatasource()
         
         // Image View
-        self.currentImage = UIImageView()
-        self.currentImage?.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
-        self.currentImage?.widthAnchor.constraint(equalToConstant: 150.0).isActive = true
-        self.currentImage?.contentMode = .scaleAspectFill
+        currentImage = UIImageView()
+        currentImage?.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
+        currentImage?.widthAnchor.constraint(equalToConstant: 150.0).isActive = true
+        currentImage?.contentMode = .scaleAspectFill
         
         // Text Label
-        self.textLabel = UILabel()
-        self.textLabel?.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
-        self.textLabel?.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
-        self.textLabel?.textAlignment = .center
+        textLabel = UILabel()
+        textLabel?.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+        textLabel?.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        textLabel?.textAlignment = .center
         
         // Activity indicator for loading state
-        self.activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        self.activityIndicator.startAnimating()
+        activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        activityIndicator.startAnimating()
 
         // Stack View
         let stackView = UIStackView()
@@ -61,20 +54,22 @@ import UIKit
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing  = 16.0
 
-        stackView.addArrangedSubview(self.currentImage!)
-        stackView.addArrangedSubview(self.activityIndicator!)
-        stackView.addArrangedSubview(self.textLabel!)
+        stackView.addArrangedSubview(currentImage!)
+        stackView.addArrangedSubview(activityIndicator!)
+        stackView.addArrangedSubview(textLabel!)
         
         // Misc
-        self.backgroundView = stackView
-        self.imageTint = self.currentImage.tintColor
-        self.textColor = self.textLabel.textColor
+        let background = UIView()
+        background.addSubview(stackView)
+        backgroundView = background
+        imageTint = currentImage.tintColor
+        textColor = textLabel.textColor
 
         // Constraints
-        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+ 
         // When all the views are ready, we initialize state data
         fillStateData()
         setState(to: .normal)
@@ -82,39 +77,35 @@ import UIKit
     }
     
     // ------------------------------------------------------------
-    // PUBLIC API METHODS
-    // ------------------------------------------------------------
     // MARK: - Public API Methods
     /**
-    Sets the tableview state. There are four available values: `normal`, `loading`, `empty` and `error`
+    Sets the collectionview state. There are four available values: `normal`, `loading`, `empty` and `error`
     - Parameter state: The desired state value.
     */
     public func setState(to state:CollectionState){
         let data = getStateData(for: state)
-        self.currentState = data
+        currentState = data
         
-        self.textLabel?.text = data?.text
-        self.textLabel.isHidden = self.textLabel?.text == nil
-        self.currentImage?.image = data?.image
-        self.currentImage.isHidden = self.currentImage?.image == nil
+        textLabel?.text = data?.text
+        textLabel.isHidden = textLabel?.text == nil
+        currentImage?.image = data?.image
+        currentImage.isHidden = currentImage?.image == nil
         
         if state == .loading{
-            self.dataSource = self.emptyDatasource
-            self.activityIndicator.isHidden = false
-            self.separatorStyle = .none
+            dataSource = emptyDatasource
+            activityIndicator.isHidden = false
     
         }else if state == .normal {
-            self.dataSource = self.originalDatasource
-            self.activityIndicator.isHidden = true
-            self.separatorStyle = self.currentSeparator
+            dataSource = originalDatasource
+            activityIndicator.isHidden = true
                 
         }else{
-            self.dataSource = self.originalDatasource
-            self.activityIndicator.isHidden = true
-            self.separatorStyle = .none
-            
+            dataSource = originalDatasource
+            activityIndicator.isHidden = true
         }
         
+        setNeedsLayout()
+        setNeedsDisplay()
     }
     
     /**
@@ -144,7 +135,7 @@ import UIKit
     - parameter color: The color to be used as tint for the state images.
      */
     public func setImageTint(to color:UIColor){
-        self.currentImage.tintColor = color
+        currentImage.tintColor = color
     }
     
     /**
@@ -152,21 +143,21 @@ import UIKit
     - parameter color: The color to be used as tint for the state texts.
      */
     public func setTextColor(to color:UIColor){
-        self.textLabel.textColor = color
+        textLabel.textColor = color
     }
     
     /**
     Resets the tint of the background images to the default one. It will reset the tint of all states simultaneously.
      */
     public func resetImageTint(){
-        self.currentImage.tintColor = self.imageTint
+        currentImage.tintColor = imageTint
     }
     
     /**
     Resets the color of the background texts to the default one. It will reset the color of all states simultaneously.
      */
     public func resetTextColor(){
-        self.textLabel.textColor = self.textColor
+        textLabel.textColor = textColor
     }
 
     /**
@@ -174,17 +165,17 @@ import UIKit
     - parameter state: The desired state value to reset.
      */
     public func reset(state:CollectionState){
-        let index = self.stateList.firstIndex { (statedata) -> Bool in
+        let index = stateList.firstIndex { (statedata) -> Bool in
             return statedata.stateId == state
         }
         
         guard let finalIndex = index else{
-            print("StatefulTableView error: State '\(state)' not found!")
+            print("StatefulCollectionView error: State '\(state)' not found!")
             return
         }
         
         let restoredState = CollectionStateData.create(forIdentifier: state)
-        self.stateList[finalIndex] = restoredState
+        stateList[finalIndex] = restoredState
         
         setStateIfNeeded()
     }
@@ -193,24 +184,21 @@ import UIKit
     Resets the images and texts of all states. Does not affect image tint or text color.
      */
     public func resetAllStates(){
-        self.stateList.removeAll()
+        stateList.removeAll()
         fillStateData()
         setStateIfNeeded()
     }
     
-    
-    // ------------------------------------------------------------
-    // PRIVATE METHODS
     // ------------------------------------------------------------
     // MARK: - Private methods
     // Retrieves the state data.
     private func getStateData(for state:CollectionState) -> CollectionStateData? {
-        let stateData = self.stateList.first { (statedata) -> Bool in
+        let stateData = stateList.first { (statedata) -> Bool in
             return statedata.stateId == state
         }
         
         guard let data = stateData else{
-            print("StatefulTableView error: State '\(state)' not found!")
+            print("StatefulCollectionView error: State '\(state)' not found!")
             return nil
         }
         

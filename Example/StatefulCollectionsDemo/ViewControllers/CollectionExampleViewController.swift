@@ -28,17 +28,7 @@ class CollectionExampleViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var btnError: UIBarButtonItem!
     @IBOutlet weak var btnCustom: UIBarButtonItem!
     @IBOutlet weak var btnCustom2: UIBarButtonItem!
-    
-    // ------------------------------------------------------------
-    // LIFECYCLE
-    // ------------------------------------------------------------
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    // ------------------------------------------------------------
-    // IBACTIONS
+
     // ------------------------------------------------------------
     // MARK: - IBActions
     @IBAction func defaultTapped(sender _:Any){
@@ -146,7 +136,9 @@ class CollectionExampleViewController: UIViewController, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionview.dequeueReusableCell(withReuseIdentifier: "BasicCollectionCell", for: indexPath)
+        let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "BasicCollectionCell", for: indexPath)
+        cell.backgroundColor = .red
+        return cell
     }
     
 }
